@@ -1,19 +1,17 @@
 package com.example.jwtlogin.security;
 
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 
 @Component
+@RequiredArgsConstructor
 public class AuthCookies {
 
     private final JwtProperties props;
-
-    public AuthCookies(JwtProperties props) {
-        this.props = props;
-    }
 
     public void setAccessToken(HttpServletResponse res, String token, Duration maxAge) {
         addCookie(res, props.cookieAccessName(), token, maxAge);
